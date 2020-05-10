@@ -1,0 +1,143 @@
+
+<body>
+    <div class="container">
+	<div class="container" style="margin-top: 2%;margin-bottom: 2%;">
+		<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-item nav-link active" href="#/!">Home</a> <a
+						class="nav-item nav-link active" href="#!inactive">In-Active
+						Data</a>
+				</div>
+			</div>
+		</nav>
+	</div>
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+				<div>
+					<h3>{{title}}</h3>
+					<h5>{{desc}}</h5>
+				</div>
+
+
+
+
+				<div ng-if="tableFlg" class="row">
+
+
+					<div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+						<div ng-if="errMsg!=null" class="alert alert-danger">
+							{{errMsg}}</div>
+
+						<div ng-if="succMsg!=null" class="alert alert-success">
+							{{succMsg}}</div>
+
+
+
+						<div class="form-group">
+							<label for="serialNo">Serial Number :</label> <input type="text"
+								maxlength="10" class="form-control"
+								ng-model="appliance.serialno" placeholder="Enter Serial Number"
+								id="serialNo"> <input type="hidden" maxlength="1"
+								class="form-control" ng-model="appliance.status" id="status">
+
+							<input type="hidden" class="form-control" ng-model="appliance.id"
+								id="id">
+						</div>
+						<div class="form-group">
+							<label for="brand">Brand :</label> <select class="form-control"
+								ng-change="changeBrand(appliance.brand)"
+								ng-model="appliance.brand">
+								<option value="">Please Select</option>
+								<option ng-repeat="brand in brandList" value="{{brand}}">{{brand}}</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="model">Model :</label> <select class="form-control"
+								ng-model="appliance.model">
+								<option value="">Please Select</option>
+								<option ng-repeat="model in modelList" value="{{model}}">{{model}}</option>
+							</select>
+
+						</div>
+
+						<div class="form-group">
+							<label for="state">Brought Date :</label> <input type="date"
+								class="form-control" ng-model="appliance.broughtdte"
+								placeholder="Enter State" id="state">
+						</div>
+
+						<button ng-if="btnFlg" type="submit" ng-click="update()"
+							class="btn btn-primary">Update</button>
+						<button ng-if="!btnFlg" type="submit" ng-click="save()"
+							class="btn btn-primary">Submit</button>
+						<button type="submit" ng-click="refresh()" class="btn btn-primary">Refresh</button>
+
+					</div>
+
+
+
+				</div>
+
+				<div ng-if="!tableFlg" class="row">
+
+
+					<div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+						<button type="submit" ng-click="addAppliance()"
+							class="btn btn-primary">Add Appliance</button>
+
+					</div>
+
+					<div class="col-sm-6 col-md-6 col-lg-6 col-xl-6"></div>
+
+					<div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+						<input type="text" class="form-control" ng-model="searchdata"
+							placeholder="Search Data" id="serialNo">
+					</div>
+
+
+					<div style="width: 100%; margin-top: 2%;"
+						class="table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>S.No</th>
+									<th>Serial Number</th>
+									<th>Brand</th>
+									<th>Model</th>
+									<th>Brought Date</th>
+									<th>Edit</th>
+									<th>Delete</th>
+									<th>Inactive</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="row in applianceList | filter:searchdata">
+									<td scope="row">{{$index+1}}</td>
+									<td>{{row.serialno}}</td>
+									<td>{{row.brand}}</td>
+									<td>{{row.model}}</td>
+									<td>{{row.broughtdte | date: "dd-MM-yyyy"}}</td>
+									<th><button ng-click="edit(row)" class="btn btn-danger">Edit</button></th>
+									<th><button ng-click="deleteAppliance(row)"
+											class="btn btn-danger">Delete</button></th>
+									<th><button ng-click="inactiveAppliance(row)"
+											class="btn btn-danger">In-Active</button></th>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+
+			</div>
+
+		</div>
+	</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+
+<body>
+<div class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-light"> 
+<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="#/!">Home</a>
+      <a class="nav-item nav-link" href="#!register">Register</a>
+    </div>
+</div>
+</nav>
+</div>
+  
+<div class="container">
+   	<br>
+  		<h3>{{title}}</h3>
+  		<h5>{{desc}}</h5>
+  	<br>
+  	
+  	
+  	<div ng-if="errMsg!=null" class="alert alert-danger">
+        {{errMsg}}
+	</div>
+	
+	<div ng-if="succMsg!=null" class="alert alert-danger">
+        {{succMsg}}
+	</div>
+  	 	
+  	<div class="form-group">
+    	<label for="name">Name :</label>
+    	<input type="text" class="form-control" ng-model="employee.name" placeholder="Enter Name" id="name">
+  	</div>
+  	<div class="form-group">
+    	<label for="email">Email :</label>
+    	<input type="text" class="form-control" ng-model="employee.email" placeholder="Enter Email" id="email">
+  	</div>
+  	<div class="form-group">
+    	<label for="phone">Phone :</label>
+    	<input type="text" class="form-control" ng-model="employee.phone" placeholder="Enter Phone" id="phone">
+  	</div>
+  	<div class="form-group">
+    	<label for="state">State :</label>
+    	<input type="text" class="form-control" ng-model="employee.state" placeholder="Enter State" id="state">
+  	</div>
+  	<div class="form-group">
+    	<label for="country">Country :</label>
+    	<input type="text" class="form-control" ng-model="employee.country" placeholder="Enter Country" id="country">
+  	</div>
+  	<button type="submit" ng-click="save()" class="btn btn-primary">Submit</button>
+  	
+</div>
+</body>
+</html>
